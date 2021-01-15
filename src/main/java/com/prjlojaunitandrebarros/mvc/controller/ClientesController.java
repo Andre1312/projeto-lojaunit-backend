@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/clientes")
@@ -24,7 +22,7 @@ public class ClientesController {
 	@Autowired
 	private ClientesRepository clientesRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/clientes/criar")
 	public @ResponseBody String criarClientes (
 
 			@RequestParam String nome,
@@ -53,13 +51,13 @@ public class ClientesController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/clientes/listar")
 	public @ResponseBody Iterable<Clientes> getAllClientes() {
 
 		return clientesRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@GetMapping(path="/clientes/apagar/{id}")
 	public @ResponseBody String  apagarClientes(@PathVariable Integer id) {
 
 
@@ -72,7 +70,7 @@ public class ClientesController {
 		return "Clientes: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/clientes/alterar/{id}")
 	public @ResponseBody String alterarClientes(
 			
 			@PathVariable Integer id,

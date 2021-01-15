@@ -25,7 +25,7 @@ public class ItensVendaController {
 	@Autowired
 	private ItensVendaRepository itensVendaRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/itensvenda/criar")
 	public @ResponseBody String criarItensVenda (
 
 			@RequestParam Integer idVenda,
@@ -48,13 +48,13 @@ public class ItensVendaController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/itensvenda/listar")
 	public @ResponseBody Iterable<ItensVenda> getAllItensVenda() {
 
 		return itensVendaRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{idVenda}")
+	@GetMapping(path="/itensvenda/apagar/{idVenda}")
 	public @ResponseBody String  apagarItensVenda(
 			
 			@PathVariable Integer idVenda
@@ -71,7 +71,7 @@ public class ItensVendaController {
 		return "Itens Venda: Registro "+idVenda+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{idVenda}")
+	@PutMapping(path="/itensvenda/alterar/{idVenda}")
 	public @ResponseBody String alterarItensVenda(
 
 			@PathVariable Integer idVenda,

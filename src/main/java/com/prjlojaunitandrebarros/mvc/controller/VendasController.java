@@ -24,7 +24,7 @@ public class VendasController {
 	@Autowired
 	private VendasRepository vendasRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/vendas/criar")
 	public @ResponseBody String criarVendas (
 
 			@RequestParam Date datahora,
@@ -46,13 +46,13 @@ public class VendasController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/vendas/listar")
 	public @ResponseBody Iterable<Vendas> getAllVendas() {
 
 		return vendasRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@GetMapping(path="/vendas/apagar/{id}")
 	public @ResponseBody String  apagarVendas(@PathVariable Integer id) {
 
 
@@ -64,7 +64,7 @@ public class VendasController {
 		return "Vendas: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/vendas/alterar/{id}")
 	public @ResponseBody String alterarVendas(
 
 			@PathVariable Integer id,

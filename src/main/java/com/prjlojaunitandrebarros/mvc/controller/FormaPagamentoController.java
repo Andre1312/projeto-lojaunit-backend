@@ -1,8 +1,5 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
-import java.util.Date;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/formapagamento")
@@ -24,7 +19,7 @@ public class FormaPagamentoController {
 	@Autowired
 	private FormaPagamentoRepository formaPagRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/formapagamento/criar")
 	public @ResponseBody String criarFormaPag (
 
 			@RequestParam String forma,
@@ -43,13 +38,13 @@ public class FormaPagamentoController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/formapagamento/listar")
 	public @ResponseBody Iterable<FormaPagamento> getAllFormaPagamento() {
 
 		return formaPagRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@GetMapping(path="/formapagamento/apagar/{id}")
 	public @ResponseBody String  apagarFormaPag(@PathVariable Integer id) {
 
 
@@ -61,7 +56,7 @@ public class FormaPagamentoController {
 		return "Forma Pagamento: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/formapagamento/alterar/{id}")
 	public @ResponseBody String alterarFormaPag(
 
 			@PathVariable Integer id,

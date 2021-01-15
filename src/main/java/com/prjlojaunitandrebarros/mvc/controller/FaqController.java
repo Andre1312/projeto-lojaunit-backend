@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/faq")
@@ -24,7 +22,7 @@ public class FaqController {
 	@Autowired
 	private FaqRepository faqRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/faq/criar")
 	public @ResponseBody String criarFaq (
 
 			@RequestParam Date datahora,
@@ -42,13 +40,13 @@ public class FaqController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/faq/listar")
 	public @ResponseBody Iterable<Faq> getAllFaq() {
 
 		return faqRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@GetMapping(path="/faq/apagar/{id}")
 	public @ResponseBody String  apagarFaq(@PathVariable Integer id) {
 
 
@@ -60,7 +58,7 @@ public class FaqController {
 		return "FAQ: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/faq/alterar/{id}")
 	public @ResponseBody String alterarFaq(
 
 			@PathVariable Integer id,

@@ -1,8 +1,5 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
-import java.util.Date;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/fornecedor")
@@ -24,7 +19,7 @@ public class FornecedorController {
 	@Autowired
 	private FornecedorRepository fornecedorRepo;
 
-	@PostMapping(path="/criar")
+	@PostMapping(path="/fornecedor/criar")
 	public @ResponseBody String criarFornecedor (
 
 			@RequestParam String nome,
@@ -48,13 +43,13 @@ public class FornecedorController {
 
 	}
 
-	@GetMapping(path="/listar")
+	@GetMapping(path="/fornecedor/listar")
 	public @ResponseBody Iterable<Fornecedor> getAllFornecedor() {
 
 		return fornecedorRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@GetMapping(path="/fornecedor/apagar/{id}")
 	public @ResponseBody String  apagarFornecedor(@PathVariable Integer id) {
 
 
@@ -66,7 +61,7 @@ public class FornecedorController {
 		return "Fornecedor: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/fornecedor/alterar/{id}")
 	public @ResponseBody String alterarFornecedor(
 
 			@PathVariable Integer id,

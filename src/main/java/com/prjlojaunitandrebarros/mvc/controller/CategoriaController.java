@@ -1,7 +1,5 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/categoria")
