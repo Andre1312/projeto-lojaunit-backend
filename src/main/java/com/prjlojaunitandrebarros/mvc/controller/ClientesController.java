@@ -22,7 +22,7 @@ public class ClientesController {
 	@Autowired
 	private ClientesRepository clientesRepo;
 
-	@PostMapping(path="/clientes/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarClientes (
 
 			@RequestParam String nome,
@@ -51,13 +51,13 @@ public class ClientesController {
 
 	}
 
-	@GetMapping(path="/clientes/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Clientes> getAllClientes() {
 
 		return clientesRepo.findAll();
 	}
 
-	@GetMapping(path="/clientes/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarClientes(@PathVariable Integer id) {
 
 
@@ -70,7 +70,7 @@ public class ClientesController {
 		return "Clientes: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/clientes/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarClientes(
 			
 			@PathVariable Integer id,

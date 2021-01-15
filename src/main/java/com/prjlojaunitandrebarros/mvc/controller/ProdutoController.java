@@ -24,7 +24,7 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepo;
 
-	@PostMapping(path="/produto/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarProduto (
 
 			@RequestParam String nome,
@@ -52,13 +52,13 @@ public class ProdutoController {
 
 	}
 
-	@GetMapping(path="/produto/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Produto> getAllProduto() {
 
 		return produtoRepo.findAll();
 	}
 
-	@GetMapping(path="/produto/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarProduto(@PathVariable Integer id) {
 
 
@@ -70,7 +70,7 @@ public class ProdutoController {
 		return "Produto: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/produto/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarProduto(
 
 			@PathVariable Integer id,

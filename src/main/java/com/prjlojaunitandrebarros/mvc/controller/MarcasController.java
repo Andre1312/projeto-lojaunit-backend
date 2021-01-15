@@ -19,7 +19,7 @@ public class MarcasController {
 	@Autowired
 	private MarcasRepository marcasRepo;
 
-	@PostMapping(path="/marcas/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarMarcas (
 
 			@RequestParam String nome,
@@ -37,13 +37,13 @@ public class MarcasController {
 
 	}
 
-	@GetMapping(path="/marcas/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Marcas> getAllMarcas() {
 
 		return marcasRepo.findAll();
 	}
 
-	@GetMapping(path="/marcas/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarMarcas(@PathVariable Integer id) {
 
 
@@ -55,7 +55,7 @@ public class MarcasController {
 		return "Marcas: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/marcas/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarMarcas(
 
 			@PathVariable Integer id,

@@ -19,7 +19,7 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository categoriaRepo;
 
-	@PostMapping(path="/categoria/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarCategoria (
 
 			@RequestParam String nome,
@@ -37,13 +37,13 @@ public class CategoriaController {
 
 	}
 
-	@GetMapping(path="/categoria/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Categoria> getAllCategoria() {
 
 		return categoriaRepo.findAll();
 	}
 
-	@GetMapping(path="/categoria/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarCategoria(@PathVariable Integer id) {
 
 
@@ -56,7 +56,7 @@ public class CategoriaController {
 		return "Categoria: Registro "+id+" Apagado";
 	}
 
-	@PutMapping(path="/categoria/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarCategoria(
 			
 			@PathVariable Integer id,

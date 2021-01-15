@@ -25,9 +25,10 @@ public class ItensVendaController {
 	@Autowired
 	private ItensVendaRepository itensVendaRepo;
 
-	@PostMapping(path="/itensvenda/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarItensVenda (
 
+			@RequestParam Integer id,
 			@RequestParam Integer idVenda,
 			@RequestParam Integer idProduto,
 			@RequestParam Integer quantidade,
@@ -37,6 +38,8 @@ public class ItensVendaController {
 
 
 		ItensVenda itensVenda = new ItensVenda();
+		
+		itensVenda.setId(id);
 		itensVenda.setIdVenda(idVenda);
 		itensVenda.setIdProduto(idProduto);
 		itensVenda.setQuantidade(quantidade);
@@ -48,46 +51,49 @@ public class ItensVendaController {
 
 	}
 
-	@GetMapping(path="/itensvenda/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<ItensVenda> getAllItensVenda() {
 
 		return itensVendaRepo.findAll();
 	}
 
-	@GetMapping(path="/itensvenda/apagar/{idVenda}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarItensVenda(
 			
-			@PathVariable Integer idVenda
+			@PathVariable Integer id
 			
 			) {
 
 
-		if (itensVendaRepo.findById(idVenda) == null) {
+		if (itensVendaRepo.findById(id) == null) {
 			
 				return "Não encontrado";
 		}
 
-		itensVendaRepo.deleteById(idVenda);
-		return "Itens Venda: Registro "+idVenda+" Apagado\n";
+		itensVendaRepo.deleteById(id);
+		return "Itens Venda: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/itensvenda/alterar/{idVenda}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarItensVenda(
 
-			@PathVariable Integer idVenda,
+			@PathVariable Integer id,
+			@RequestParam Integer idVenda,
 			@RequestParam Integer idProduto,
 			@RequestParam Integer quantidade,
 			@RequestParam Double valorUnitario
+			
 
 			) {
 
 
-		if (itensVendaRepo.findById(idVenda) == null) {
+		if (itensVendaRepo.findById(id) == null) {
 			return "Não encontrado";
 		}
 
 		ItensVenda itensVenda = new ItensVenda();
 		
+		itensVenda.setId(id);
 		itensVenda.setIdVenda(idVenda);
 		itensVenda.setIdProduto(idProduto);
 		itensVenda.setQuantidade(quantidade);

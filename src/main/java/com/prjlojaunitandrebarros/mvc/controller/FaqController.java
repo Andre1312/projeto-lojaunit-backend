@@ -22,7 +22,7 @@ public class FaqController {
 	@Autowired
 	private FaqRepository faqRepo;
 
-	@PostMapping(path="/faq/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarFaq (
 
 			@RequestParam Date datahora,
@@ -40,13 +40,13 @@ public class FaqController {
 
 	}
 
-	@GetMapping(path="/faq/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Faq> getAllFaq() {
 
 		return faqRepo.findAll();
 	}
 
-	@GetMapping(path="/faq/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFaq(@PathVariable Integer id) {
 
 
@@ -58,7 +58,7 @@ public class FaqController {
 		return "FAQ: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/faq/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarFaq(
 
 			@PathVariable Integer id,

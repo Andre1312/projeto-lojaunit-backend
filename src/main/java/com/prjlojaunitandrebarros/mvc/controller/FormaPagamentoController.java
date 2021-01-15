@@ -19,7 +19,7 @@ public class FormaPagamentoController {
 	@Autowired
 	private FormaPagamentoRepository formaPagRepo;
 
-	@PostMapping(path="/formapagamento/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarFormaPag (
 
 			@RequestParam String forma,
@@ -38,13 +38,13 @@ public class FormaPagamentoController {
 
 	}
 
-	@GetMapping(path="/formapagamento/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<FormaPagamento> getAllFormaPagamento() {
 
 		return formaPagRepo.findAll();
 	}
 
-	@GetMapping(path="/formapagamento/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFormaPag(@PathVariable Integer id) {
 
 
@@ -56,7 +56,7 @@ public class FormaPagamentoController {
 		return "Forma Pagamento: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/formapagamento/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarFormaPag(
 
 			@PathVariable Integer id,

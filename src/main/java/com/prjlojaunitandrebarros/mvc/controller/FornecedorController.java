@@ -19,7 +19,7 @@ public class FornecedorController {
 	@Autowired
 	private FornecedorRepository fornecedorRepo;
 
-	@PostMapping(path="/fornecedor/criar")
+	@PostMapping(path="/criar")
 	public @ResponseBody String criarFornecedor (
 
 			@RequestParam String nome,
@@ -43,13 +43,13 @@ public class FornecedorController {
 
 	}
 
-	@GetMapping(path="/fornecedor/listar")
+	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Fornecedor> getAllFornecedor() {
 
 		return fornecedorRepo.findAll();
 	}
 
-	@GetMapping(path="/fornecedor/apagar/{id}")
+	@GetMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFornecedor(@PathVariable Integer id) {
 
 
@@ -61,7 +61,7 @@ public class FornecedorController {
 		return "Fornecedor: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/fornecedor/alterar/{id}")
+	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarFornecedor(
 
 			@PathVariable Integer id,
