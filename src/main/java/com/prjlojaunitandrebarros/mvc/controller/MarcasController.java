@@ -2,6 +2,7 @@ package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,17 +23,15 @@ public class MarcasController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarMarcas (
 
-			@RequestParam String nome,
-			@RequestParam String descricao
-
-			) {
-
+			@RequestParam	String nome,
+							String descricao){
 
 		Marcas marcas = new Marcas();
 		marcas.setNome(nome);
 		marcas.setDescricao(descricao);
 		
 		marcasRepo.save(marcas);
+		
 		return "Marcas: Registro Criado\n";
 
 	}
@@ -43,15 +42,15 @@ public class MarcasController {
 		return marcasRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarMarcas(@PathVariable Integer id) {
 
-
 		if (marcasRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		marcasRepo.deleteById(id);
+		
 		return "Marcas: Registro "+id+" Apagado\n";
 	}
 
@@ -59,20 +58,19 @@ public class MarcasController {
 	public @ResponseBody String alterarMarcas(
 
 			@PathVariable Integer id,
-			@RequestParam String nome,
-			@RequestParam String descricao
-
-			) {
-
+			@RequestParam	String nome,
+							String descricao){
 
 		if (marcasRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Marcas marcas = new Marcas();
 		marcas.setNome(nome);
 		marcas.setDescricao(descricao);
+		
 		marcasRepo.save(marcas);
+		
 		return "Marcas: Registro " +id+ " Alterado\n";
 	}
 

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,15 @@ public class ClientesController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarClientes (
 
-			@RequestParam String nome,
-			@RequestParam String cpf,
-			@RequestParam String email,
-			@RequestParam Date dataNascimento,
-			@RequestParam String sexo,
-			@RequestParam String nomeSocial,
-			@RequestParam String apelido,
-			@RequestParam String telefone
-			) {
-
-
+			@RequestParam	String nome,
+				 			String cpf,
+				 			String email,
+				 			Date dataNascimento,
+				 			String sexo,
+				 			String nomeSocial,
+				 			String apelido,
+				 			String telefone)
+	{
 		Clientes clientes = new Clientes();
 		clientes.setNome(nome);
 		clientes.setCpf(cpf);
@@ -48,21 +47,19 @@ public class ClientesController {
 
 		clientesRepo.save(clientes);
 		return "Clientes: Registro Criado\n";
-
 	}
 
 	@GetMapping(path="/listar")
-	public @ResponseBody Iterable<Clientes> getAllClientes() {
-
+	public @ResponseBody Iterable<Clientes> getAllClientes(){
 		return clientesRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarClientes(@PathVariable Integer id) {
 
 
 		if (clientesRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		clientesRepo.deleteById(id);
@@ -74,20 +71,20 @@ public class ClientesController {
 	public @ResponseBody String alterarClientes(
 			
 			@PathVariable Integer id,
-			@RequestParam String nome,
-			@RequestParam String cpf,
-			@RequestParam String email,
-			@RequestParam Date dataNascimento,
-			@RequestParam String sexo,
-			@RequestParam String nomeSocial,
-			@RequestParam String apelido,
-			@RequestParam String telefone
+			@RequestParam 	String nome,
+							String cpf,
+							String email,
+							Date dataNascimento,
+							String sexo,
+							String nomeSocial,
+							String apelido,
+							String telefone
 			
 			) {
 
 
 		if (clientesRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Clientes clientes = new Clientes();

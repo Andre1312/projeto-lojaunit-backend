@@ -31,7 +31,7 @@ public class Fornecedor {
 	@Getter @Setter private String email;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Produto> produtos = new ArrayList<>();
+	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 	
 
 }

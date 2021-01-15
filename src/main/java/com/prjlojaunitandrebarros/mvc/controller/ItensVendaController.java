@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,10 @@ public class ItensVendaController {
 	public @ResponseBody String criarItensVenda (
 
 			@RequestParam Integer id,
-			@RequestParam Integer idVenda,
-			@RequestParam Integer idProduto,
-			@RequestParam Integer quantidade,
-			@RequestParam Double valorUnitario
-
-			) {
+			@RequestParam	Integer idVenda,
+							Integer idProduto,
+							Integer quantidade,
+							Double valorUnitario){
 
 
 		ItensVenda itensVenda = new ItensVenda();
@@ -57,7 +56,7 @@ public class ItensVendaController {
 		return itensVendaRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarItensVenda(
 			
 			@PathVariable Integer id
@@ -66,8 +65,7 @@ public class ItensVendaController {
 
 
 		if (itensVendaRepo.findById(id) == null) {
-			
-				return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		itensVendaRepo.deleteById(id);
@@ -78,17 +76,17 @@ public class ItensVendaController {
 	public @ResponseBody String alterarItensVenda(
 
 			@PathVariable Integer id,
-			@RequestParam Integer idVenda,
-			@RequestParam Integer idProduto,
-			@RequestParam Integer quantidade,
-			@RequestParam Double valorUnitario
+			@RequestParam	Integer idVenda,
+							Integer idProduto,
+							Integer quantidade,
+							Double valorUnitario
 			
 
 			) {
 
 
 		if (itensVendaRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		ItensVenda itensVenda = new ItensVenda();
@@ -100,6 +98,7 @@ public class ItensVendaController {
 		itensVenda.setValorUnitario(valorUnitario);
 
 		itensVendaRepo.save(itensVenda);
+		
 		return "Itens Venda: Registro " +idVenda+ " Alterado\n";
 	}
 

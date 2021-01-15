@@ -2,6 +2,7 @@ package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,11 +23,11 @@ public class FornecedorController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarFornecedor (
 
-			@RequestParam String nome,
-			@RequestParam String endereco,
-			@RequestParam String telefone,
-			@RequestParam String cnpj,
-			@RequestParam String email
+			@RequestParam	String nome,
+							String endereco,
+							String telefone,
+							String cnpj,
+							String email
 
 			) {
 
@@ -49,12 +50,12 @@ public class FornecedorController {
 		return fornecedorRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFornecedor(@PathVariable Integer id) {
 
 
 		if (fornecedorRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		fornecedorRepo.deleteById(id);
@@ -65,17 +66,17 @@ public class FornecedorController {
 	public @ResponseBody String alterarFornecedor(
 
 			@PathVariable Integer id,
-			@RequestParam String nome,
-			@RequestParam String endereco,
-			@RequestParam String telefone,
-			@RequestParam String cnpj,
-			@RequestParam String email
+			@RequestParam	String nome,
+							String endereco,
+							String telefone,
+							String cnpj,
+							String email
 
 			) {
 
 
 		if (fornecedorRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Fornecedor fornecedor = new Fornecedor();
@@ -87,6 +88,7 @@ public class FornecedorController {
 		fornecedor.setEmail(email);
 
 		fornecedorRepo.save(fornecedor);
+		
 		return "Fornecedor: Registro " +id+ " Alterado\n";
 	}
 

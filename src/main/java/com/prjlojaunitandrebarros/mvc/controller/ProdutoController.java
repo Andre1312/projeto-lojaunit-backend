@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,13 +28,13 @@ public class ProdutoController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarProduto (
 
-			@RequestParam String nome,
-			@RequestParam String descricao,
-			@RequestParam Double precoUnitario,
-			@RequestParam String unidade,
-			@RequestParam Integer idCategoria,
-			@RequestParam Integer idFornecedor,
-			@RequestParam Integer idMarca
+			@RequestParam	String nome,
+							String descricao,
+							Double precoUnitario,
+							String unidade,
+							Integer idCategoria,
+							Integer idFornecedor,
+							Integer idMarca
 
 			) {
 
@@ -48,6 +49,7 @@ public class ProdutoController {
 		produto.setIdMarca(idMarca);
 
 		produtoRepo.save(produto);
+		
 		return "Produto: Registro Criado\n";
 
 	}
@@ -58,12 +60,12 @@ public class ProdutoController {
 		return produtoRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarProduto(@PathVariable Integer id) {
 
 
 		if (produtoRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		produtoRepo.deleteById(id);
@@ -74,19 +76,16 @@ public class ProdutoController {
 	public @ResponseBody String alterarProduto(
 
 			@PathVariable Integer id,
-			@RequestParam String nome,
-			@RequestParam String descricao,
-			@RequestParam Double precoUnitario,
-			@RequestParam String unidade,
-			@RequestParam Integer idCategoria,
-			@RequestParam Integer idFornecedor,
-			@RequestParam Integer idMarca
-
-			) {
-
+			@RequestParam	String nome,
+							String descricao,
+							Double precoUnitario,
+							String unidade,
+							Integer idCategoria,
+							Integer idFornecedor,
+							Integer idMarca){
 
 		if (produtoRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Produto produto = new Produto();
@@ -100,6 +99,7 @@ public class ProdutoController {
 		produto.setIdMarca(idMarca);
 
 		produtoRepo.save(produto);
+		
 		return "Produto: Registro " +id+ " Alterado\n";
 	}
 

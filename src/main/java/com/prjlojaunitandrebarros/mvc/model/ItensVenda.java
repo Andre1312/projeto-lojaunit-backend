@@ -17,11 +17,11 @@ public class ItensVenda {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_venda", nullable = false)
-	private Vendas vendas;
+	@Getter @Setter private Vendas vendas;
 		
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_produto", nullable = false)
-	private Produto produto;
+	@Getter @Setter private Produto produto;
 	
 	@Getter @Setter private Integer quantidade;
 	

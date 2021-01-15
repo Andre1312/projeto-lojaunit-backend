@@ -28,20 +28,20 @@ public class Produto {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_categoria", nullable = false)
-	private Categoria categoria;
+	@Getter @Setter private Categoria categoria;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_fornecedor", nullable = false)
-	private Fornecedor fornecedor;
+	@Getter @Setter private Fornecedor fornecedor;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_marca", nullable = false)
-	private Marcas marcas;
+	@Getter @Setter private Marcas marcas;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Faq> faqs = new ArrayList<>();
+	@Getter @Setter private List<Faq> faqs = new ArrayList<>();
 
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<ItensVenda> itensvendas= new ArrayList<>();
+	@Getter @Setter private List<ItensVenda> itensvendas= new ArrayList<>();
 	
 }

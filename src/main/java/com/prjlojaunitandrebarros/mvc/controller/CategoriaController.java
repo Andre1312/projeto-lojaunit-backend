@@ -2,6 +2,7 @@ package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.model.*;
+import com.prjlojaunitandrebarros.mvc.model.Categoria;
+import com.prjlojaunitandrebarros.mvc.repository.CategoriaRepository;
 
 @Controller
 @RequestMapping(path="/categoria")
@@ -22,8 +22,8 @@ public class CategoriaController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarCategoria (
 
-			@RequestParam String nome,
-			@RequestParam Boolean ativo
+			@RequestParam 	String nome,
+							Boolean ativo
 			
 			) {
 
@@ -33,6 +33,8 @@ public class CategoriaController {
 		categoria.setAtivo(ativo);
 
 		categoriaRepo.save(categoria);
+		
+		
 		return "Categoria: Registro Criado\n";
 
 	}
@@ -43,12 +45,12 @@ public class CategoriaController {
 		return categoriaRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarCategoria(@PathVariable Integer id) {
 
 
 		if (categoriaRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		categoriaRepo.deleteById(id);
@@ -60,14 +62,15 @@ public class CategoriaController {
 	public @ResponseBody String alterarCategoria(
 			
 			@PathVariable Integer id,
-			@RequestParam String nome,
-			@RequestParam boolean ativo
+			
+			@RequestParam 	String nome,
+							boolean ativo
 			
 			) {
 
 
 		if (categoriaRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Categoria categoria = new Categoria();

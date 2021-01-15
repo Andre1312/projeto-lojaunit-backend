@@ -2,6 +2,7 @@ package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +23,9 @@ public class FormaPagamentoController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarFormaPag (
 
-			@RequestParam String forma,
-			@RequestParam String descricao,
-			@RequestParam Boolean ativo
+			@RequestParam	String forma,
+							String descricao,
+							Boolean ativo
 
 			) {
 
@@ -44,12 +45,12 @@ public class FormaPagamentoController {
 		return formaPagRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFormaPag(@PathVariable Integer id) {
 
 
 		if (formaPagRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		formaPagRepo.deleteById(id);
@@ -60,9 +61,9 @@ public class FormaPagamentoController {
 	public @ResponseBody String alterarFormaPag(
 
 			@PathVariable Integer id,
-			@RequestParam String forma,
-			@RequestParam String descricao,
-			@RequestParam Boolean ativo
+			@RequestParam	String forma,
+							String descricao,
+							Boolean ativo
 
 			) {
 
@@ -74,6 +75,7 @@ public class FormaPagamentoController {
 		formaPag.setAtivo(ativo);
 
 		formaPagRepo.save(formaPag);
+		
 		return "Forma Pagamento: Registro " +id+ " Alterado\n";
 	}
 

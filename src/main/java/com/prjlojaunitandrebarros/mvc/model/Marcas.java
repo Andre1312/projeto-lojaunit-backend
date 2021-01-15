@@ -23,7 +23,7 @@ public class Marcas {
 	@Getter @Setter private String descricao;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Produto> produtos = new ArrayList<>();
+	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 	
 	
 }

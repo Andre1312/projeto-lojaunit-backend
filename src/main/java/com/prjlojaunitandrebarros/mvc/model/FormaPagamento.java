@@ -28,6 +28,6 @@ public class FormaPagamento {
 	@Getter @Setter private Boolean ativo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Vendas> vendas = new ArrayList<>();
+	@Getter @Setter private List<Vendas> vendas = new ArrayList<>();
 	
 }

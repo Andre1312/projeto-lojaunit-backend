@@ -24,6 +24,6 @@ public class Categoria {
 	@Getter @Setter private Boolean ativo;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Produto> produtos = new ArrayList<>();
+	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 
 }

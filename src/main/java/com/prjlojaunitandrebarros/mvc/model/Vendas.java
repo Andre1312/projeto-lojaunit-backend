@@ -23,21 +23,21 @@ public class Vendas {
 	
 	
 	@Column(name="id_cliente", insertable = false, updatable = false)
-	@Getter private Integer idCliente;
+	@Getter @Setter private Integer idCliente;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_cliente", nullable = false)
-	private Clientes clientes;
+	@Getter @Setter private Clientes clientes;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_forma_pagamento", nullable = false)
-	private FormaPagamento formaPagamento;
+	@Getter @Setter private FormaPagamento formaPagamento;
 	
 	@Column(name="valor_total")
 	@Getter @Setter private Double valorTotal;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<ItensVenda> itensVenda = new ArrayList<>();
+	@Getter @Setter private List<ItensVenda> itensVenda = new ArrayList<>();
 	
 	
 

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,8 @@ public class FaqController {
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarFaq (
 
-			@RequestParam Date datahora,
-			@RequestParam String texto
+			@RequestParam	Date datahora,
+							String texto
 
 			) {
 
@@ -46,12 +47,12 @@ public class FaqController {
 		return faqRepo.findAll();
 	}
 
-	@GetMapping(path="/apagar/{id}")
+	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFaq(@PathVariable Integer id) {
 
 
 		if (faqRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		faqRepo.deleteById(id);
@@ -62,14 +63,14 @@ public class FaqController {
 	public @ResponseBody String alterarFaq(
 
 			@PathVariable Integer id,
-			@RequestParam Date datahora,
-			@RequestParam String texto
+			@RequestParam	Date datahora,
+							String texto
 
 			) {
 
 
 		if (faqRepo.findById(id) == null) {
-			return "Não encontrado";
+			return "ID " + id +" Não encontrado";
 		}
 
 		Faq faq = new Faq();

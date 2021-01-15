@@ -26,7 +26,7 @@ public class Faq {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_produto", nullable = false)
-	private Faq faq;
+	@Getter @Setter private Faq faq;
 	
 	
 	
