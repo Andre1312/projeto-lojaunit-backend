@@ -20,11 +20,7 @@ public class Vendas {
 	@Getter @Setter private Integer id;
 	
 	@Getter @Setter private Date datahora;
-	
-	
-	@Column(name="id_cliente", insertable = false, updatable = false)
-	@Getter @Setter private Integer idCliente;
-	
+			
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_cliente", nullable = false)
 	@Getter @Setter private Clientes clientes;
@@ -36,7 +32,7 @@ public class Vendas {
 	@Column(name="valor_total")
 	@Getter @Setter private Double valorTotal;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="vendas",cascade=CascadeType.ALL)
 	@Getter @Setter private List<ItensVenda> itensVenda = new ArrayList<>();
 	
 	

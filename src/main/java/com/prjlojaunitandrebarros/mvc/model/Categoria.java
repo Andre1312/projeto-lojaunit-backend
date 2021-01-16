@@ -23,7 +23,7 @@ public class Categoria {
 	@Column(name="ativo", nullable = false)
 	@Getter @Setter private Boolean ativo;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="categoria",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 
 }

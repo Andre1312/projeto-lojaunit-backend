@@ -30,7 +30,7 @@ public class Fornecedor {
 	
 	@Getter @Setter private String email;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="fornecedor",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 	
 

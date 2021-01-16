@@ -41,7 +41,7 @@ public class Clientes {
 	
 	@Getter @Setter private String telefone;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="clientes",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Vendas> vendas = new ArrayList<>();
 	
 	

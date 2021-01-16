@@ -38,10 +38,10 @@ public class Produto {
 	@JoinColumn(name="id_marca", nullable = false)
 	@Getter @Setter private Marcas marcas;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="faq" , cascade=CascadeType.ALL)
 	@Getter @Setter private List<Faq> faqs = new ArrayList<>();
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
 	@Getter @Setter private List<ItensVenda> itensvendas= new ArrayList<>();
 	
 }
