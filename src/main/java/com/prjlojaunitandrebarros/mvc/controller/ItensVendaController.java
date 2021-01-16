@@ -1,9 +1,5 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
-import java.util.Date;
-
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/itensvenda")
@@ -39,8 +33,8 @@ public class ItensVendaController {
 		ItensVenda itensVenda = new ItensVenda();
 		
 		itensVenda.setId(id);
-		itensVenda.setIdVenda(idVenda);
-		itensVenda.setIdProduto(idProduto);
+		//  ??? itensVenda.getVendas().getId();
+		//  ??? itensVenda.getProduto().getId();
 		itensVenda.setQuantidade(quantidade);
 		itensVenda.setValorUnitario(valorUnitario);
 		
@@ -92,8 +86,8 @@ public class ItensVendaController {
 		ItensVenda itensVenda = new ItensVenda();
 		
 		itensVenda.setId(id);
-		itensVenda.setIdVenda(idVenda);
-		itensVenda.setIdProduto(idProduto);
+		// ??? itensVenda.getVendas().getId();
+		// ??? itensVenda.getProduto().getId();
 		itensVenda.setQuantidade(quantidade);
 		itensVenda.setValorUnitario(valorUnitario);
 

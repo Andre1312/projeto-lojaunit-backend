@@ -27,7 +27,7 @@ public class FormaPagamento {
 	@Column(name="ativo", nullable = false)
 	@Getter @Setter private Boolean ativo;
 	
-	@OneToMany(mappedBy="formaPagamento",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="formaPagamento",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Vendas> vendas = new ArrayList<>();
 	
 }

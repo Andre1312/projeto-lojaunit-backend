@@ -15,11 +15,11 @@ public class ItensVenda {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Getter @Setter private Integer id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_venda", nullable = false)
 	@Getter @Setter private Vendas vendas;
 		
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_produto", nullable = false)
 	@Getter @Setter private Produto produto;
 	

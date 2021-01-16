@@ -24,7 +24,7 @@ public class Faq {
 	@Column(name="texto", nullable=false)
 	@Getter @Setter private String texto;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="id_produto", nullable = false)
 	@Getter @Setter private Faq faq;
 	

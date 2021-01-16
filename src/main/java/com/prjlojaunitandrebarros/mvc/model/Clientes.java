@@ -41,7 +41,7 @@ public class Clientes {
 	
 	@Getter @Setter private String telefone;
 	
-	@OneToMany(mappedBy="clientes",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="clientes",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Vendas> vendas = new ArrayList<>();
 	
 	

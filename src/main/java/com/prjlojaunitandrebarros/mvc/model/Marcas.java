@@ -22,7 +22,7 @@ public class Marcas {
 	@Getter @Setter private String nome;
 	@Getter @Setter private String descricao;
 	
-	@OneToMany(mappedBy="marcas",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="marcas",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 	
 	

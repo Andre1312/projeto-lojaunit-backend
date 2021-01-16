@@ -30,7 +30,7 @@ public class Fornecedor {
 	
 	@Getter @Setter private String email;
 	
-	@OneToMany(mappedBy="fornecedor",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="fornecedor",cascade=CascadeType.ALL)
 	@Getter @Setter private List<Produto> produtos = new ArrayList<>();
 	
 
