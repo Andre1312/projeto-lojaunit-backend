@@ -17,7 +17,7 @@ public class Marcas {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Getter private Integer id;
+	@Getter @Setter private Integer id;
 	
 	@Getter @Setter private String nome;
 	@Getter @Setter private String descricao;

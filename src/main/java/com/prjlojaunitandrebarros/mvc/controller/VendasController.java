@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/vendas")
@@ -35,8 +33,8 @@ public class VendasController {
 
 		Vendas vendas = new Vendas();
 		vendas.setDatahora(datahora);
-		vendas.setIdCliente(idCliente);
-		vendas.setIdFormaPagamento(idFormaPagamento);
+		vendas.getClientes().setId(idCliente);
+		vendas.getFormaPagamento().setId(idFormaPagamento);
 		vendas.setValorTotal(valorTotal);
 
 		vendasRepo.save(vendas);
@@ -81,8 +79,8 @@ public class VendasController {
 
 		Vendas vendas = new Vendas();
 		vendas.setDatahora(datahora);
-		vendas.setIdCliente(idCliente);
-		vendas.setIdFormaPagamento(idFormaPagamento);
+		vendas.getClientes().setId(idCliente);
+		vendas.getFormaPagamento().setId(idFormaPagamento);
 		vendas.setValorTotal(valorTotal);
 
 		vendasRepo.save(vendas);

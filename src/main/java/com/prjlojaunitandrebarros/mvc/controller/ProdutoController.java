@@ -1,8 +1,5 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
-import java.util.Date;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.controller.*;
 import com.prjlojaunitandrebarros.mvc.model.*;
-import com.prjlojaunitandrebarros.*;
 
 @Controller
 @RequestMapping(path="/produto")
@@ -34,19 +29,16 @@ public class ProdutoController {
 							String unidade,
 							Integer idCategoria,
 							Integer idFornecedor,
-							Integer idMarca
-
-			) {
-
+							Integer idMarca) {
 
 		Produto produto = new Produto();
 		produto.setNome(nome);
 		produto.setDescricao(descricao);
 		produto.setPrecoUnitario(precoUnitario);
 		produto.setUnidade(unidade);
-		produto.setCategoria(idCategoria);
-		produto.setIdFornecedor(idFornecedor);
-		produto.setIdMarca(idMarca);
+		produto.getCategoria().setId(idCategoria);
+		produto.getFornecedor().setId(idFornecedor);
+		produto.getMarcas().setId(idMarca);
 
 		produtoRepo.save(produto);
 		
@@ -94,9 +86,9 @@ public class ProdutoController {
 		produto.setDescricao(descricao);
 		produto.setPrecoUnitario(precoUnitario);
 		produto.setUnidade(unidade);
-		produto.setIdCategoria(idCategoria);
-		produto.setIdFornecedor(idFornecedor);
-		produto.setIdMarca(idMarca);
+		produto.getCategoria().setId(idCategoria);
+		produto.getFornecedor().setId(idFornecedor);
+		produto.getMarcas().setId(idMarca);
 
 		produtoRepo.save(produto);
 		

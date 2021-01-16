@@ -33,8 +33,8 @@ public class ItensVendaController {
 		ItensVenda itensVenda = new ItensVenda();
 		
 		itensVenda.setId(id);
-		//  ??? itensVenda.getVendas().getId();
-		//  ??? itensVenda.getProduto().getId();
+		itensVenda.getVendas().setId(idVenda);
+		itensVenda.getProduto().setId(idProduto);
 		itensVenda.setQuantidade(quantidade);
 		itensVenda.setValorUnitario(valorUnitario);
 		
@@ -53,9 +53,7 @@ public class ItensVendaController {
 	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarItensVenda(
 			
-			@PathVariable Integer id
-			
-			) {
+			@PathVariable Integer id) {
 
 
 		if (itensVendaRepo.findById(id) == null) {
@@ -73,10 +71,7 @@ public class ItensVendaController {
 			@RequestParam	Integer idVenda,
 							Integer idProduto,
 							Integer quantidade,
-							Double valorUnitario
-			
-
-			) {
+							Double valorUnitario) {
 
 
 		if (itensVendaRepo.findById(id) == null) {
@@ -86,8 +81,8 @@ public class ItensVendaController {
 		ItensVenda itensVenda = new ItensVenda();
 		
 		itensVenda.setId(id);
-		// ??? itensVenda.getVendas().getId();
-		// ??? itensVenda.getProduto().getId();
+		itensVenda.getVendas().setId(idVenda);
+		itensVenda.getProduto().setId(idProduto);
 		itensVenda.setQuantidade(quantidade);
 		itensVenda.setValorUnitario(valorUnitario);
 
