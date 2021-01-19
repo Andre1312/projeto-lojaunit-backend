@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,6 +101,20 @@ public class ClientesController {
 
 		clientesRepo.save(clientes);
 		return "Clientes: Registro " +id+ " Alterado\n";
+	}
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<Clientes> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (clientesRepo.findById(id) == null) {
+			return (ResponseEntity<Clientes>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		Clientes clientes = new Clientes();
+		return ResponseEntity.ok().body(clientes);
 	}
 
 

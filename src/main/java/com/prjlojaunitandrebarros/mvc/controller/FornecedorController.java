@@ -1,6 +1,7 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -90,6 +91,21 @@ public class FornecedorController {
 		fornecedorRepo.save(fornecedor);
 		
 		return "Fornecedor: Registro " +id+ " Alterado\n";
+	}
+
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<Fornecedor> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (fornecedorRepo.findById(id) == null) {
+			return (ResponseEntity<Fornecedor>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		Fornecedor fornecedor = new Fornecedor();
+		return ResponseEntity.ok().body(fornecedor);
 	}
 
 

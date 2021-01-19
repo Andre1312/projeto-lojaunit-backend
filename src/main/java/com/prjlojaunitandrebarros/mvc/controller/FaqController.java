@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,6 +80,21 @@ public class FaqController {
 
 		faqRepo.save(faq);
 		return "FAQ: Registro " +id+ " Alterado\n";
+	}
+	
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<Faq> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (faqRepo.findById(id) == null) {
+			return (ResponseEntity<Faq>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		Faq faq = new Faq();
+		return ResponseEntity.ok().body(faq);
 	}
 
 

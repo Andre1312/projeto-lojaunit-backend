@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -87,5 +88,19 @@ public class VendasController {
 		return "Vendas: Registro " +id+ " Alterado\n";
 	}
 
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<Vendas> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (vendasRepo.findById(id) == null) {
+			return (ResponseEntity<Vendas>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		Vendas vendas = new Vendas();
+		return ResponseEntity.ok().body(vendas);
+	}
 
 }

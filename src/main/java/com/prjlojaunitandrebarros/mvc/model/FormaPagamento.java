@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class FormaPagamento {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //AUTO Mysql -> IDENTITY Postgresql
 	@Getter @Setter private Integer id;
 	
 	@Column(name="forma", nullable = false)

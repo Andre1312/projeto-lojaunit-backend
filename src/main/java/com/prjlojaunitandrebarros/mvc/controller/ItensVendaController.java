@@ -1,6 +1,7 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,6 +90,21 @@ public class ItensVendaController {
 		itensVendaRepo.save(itensVenda);
 		
 		return "Itens Venda: Registro " +idVenda+ " Alterado\n";
+	}
+
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<ItensVenda> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (itensVendaRepo.findById(id) == null) {
+			return (ResponseEntity<ItensVenda>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		ItensVenda itensVenda = new ItensVenda();
+		return ResponseEntity.ok().body(itensVenda);
 	}
 
 

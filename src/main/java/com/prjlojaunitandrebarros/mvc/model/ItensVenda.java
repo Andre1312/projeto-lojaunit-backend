@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class ItensVenda {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //AUTO Mysql -> IDENTITY Postgresql
 	@Getter @Setter private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)

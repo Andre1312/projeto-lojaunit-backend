@@ -1,6 +1,7 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,5 +80,20 @@ public class FormaPagamentoController {
 		return "Forma Pagamento: Registro " +id+ " Alterado\n";
 	}
 
+	@GetMapping(path="/buscar/{id}")
+	public @ResponseBody ResponseEntity<FormaPagamento> getById(
+			
+		@PathVariable Integer id) {
+			
+		if (formaPagRepo.findById(id) == null) {
+			return (ResponseEntity<FormaPagamento>) ResponseEntity.notFound();
+					
+					//.body("ID " + id +" Não encontrado");
+		}
+		
+		FormaPagamento formaPag = new FormaPagamento();
+		return ResponseEntity.ok().body(formaPag);
+	}
 
+	
 }

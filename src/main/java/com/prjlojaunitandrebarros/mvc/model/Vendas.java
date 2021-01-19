@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Vendas {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //AUTO Mysql -> IDENTITY Postgresql
 	@Getter @Setter private Integer id;
 	
 	@Getter @Setter private Date datahora;
