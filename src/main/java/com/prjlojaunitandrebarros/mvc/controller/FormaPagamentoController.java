@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.prjlojaunitandrebarros.mvc.model.FormaPagamento;
 import com.prjlojaunitandrebarros.mvc.repository.FormaPagamentoRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @Controller
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path="/formapagamento")
 public class FormaPagamentoController {
 	@Autowired
@@ -50,7 +51,7 @@ public class FormaPagamentoController {
 		return "Forma Pagamento: Registro "+id+" Apagado\n";
 	}
 
-	@PutMapping(path="/alterar/{id}")
+	@PutMapping(path="/atualizar/{id}")
 	public @ResponseBody String alterarFormaPag(
 			@PathVariable Integer id,
 			@RequestBody	FormaPagamento formapagamento
