@@ -38,7 +38,7 @@ public class Produto {
 	@JoinColumn(name="id_marca", nullable = false)
 	@Getter @Setter private Marcas marcas;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="faq" , cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="produto" , cascade=CascadeType.ALL)
 	@Getter @Setter private List<Faq> faqs = new ArrayList<>();
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="produto", cascade=CascadeType.ALL)

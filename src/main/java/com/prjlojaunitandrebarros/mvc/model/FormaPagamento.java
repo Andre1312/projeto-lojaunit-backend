@@ -16,7 +16,8 @@ public class FormaPagamento {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //AUTO Mysql -> IDENTITY Postgresql
-	@Getter @Setter private Integer id;
+	@Column(name="id")
+	@Getter @Setter private Integer idFpg;
 	
 	@Column(name="forma", nullable = false)
 	@Getter @Setter private String forma;

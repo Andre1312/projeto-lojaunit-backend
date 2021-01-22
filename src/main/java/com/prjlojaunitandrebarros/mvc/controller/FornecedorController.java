@@ -1,7 +1,6 @@
 package com.prjlojaunitandrebarros.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,68 +11,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.prjlojaunitandrebarros.mvc.repository.*;
-import com.prjlojaunitandrebarros.mvc.model.*;
+import com.prjlojaunitandrebarros.mvc.model.Fornecedor;
+import com.prjlojaunitandrebarros.mvc.repository.FornecedorRepository;
 
 @Controller
 @RequestMapping(path="/fornecedor")
 public class FornecedorController {
+	
 	@Autowired
 	private FornecedorRepository fornecedorRepo;
 
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarFornecedor (
-
-			@RequestParam	String nome,
-							String endereco,
-							String telefone,
-							String cnpj,
-							String email
-
-			) {
-
-
+			@RequestParam	Fornecedor fornecedorDetalhes
+			){
+		
 		Fornecedor fornecedor = new Fornecedor();
-		fornecedor.setNome(nome);
-		fornecedor.setEndereco(endereco);
-		fornecedor.setTelefone(telefone);
-		fornecedor.setCnpj(cnpj);
-		fornecedor.setEmail(email);
+		
+		fornecedor.setNome(fornecedorDetalhes.getNome());
+		fornecedor.setEndereco(fornecedorDetalhes.getEndereco());
+		fornecedor.setTelefone(fornecedorDetalhes.getTelefone());
+		fornecedor.setCnpj(fornecedorDetalhes.getCnpj());
+		fornecedor.setEmail(fornecedorDetalhes.getEmail());
 
 		fornecedorRepo.save(fornecedor);
-		return "Fornecedor: Registro Criado\n";
+		
+		return "Fornecedor: Registro Criado ID: "+fornecedor.getId()+"\n";
 
 	}
 
 	@GetMapping(path="/listar")
 	public @ResponseBody Iterable<Fornecedor> getAllFornecedor() {
-
 		return fornecedorRepo.findAll();
 	}
 
 	@DeleteMapping(path="/apagar/{id}")
 	public @ResponseBody String  apagarFornecedor(@PathVariable Integer id) {
-
-
 		if (fornecedorRepo.findById(id) == null) {
 			return "ID " + id +" Não encontrado";
 		}
-
 		fornecedorRepo.deleteById(id);
 		return "Fornecedor: Registro "+id+" Apagado\n";
 	}
 
 	@PutMapping(path="/alterar/{id}")
 	public @ResponseBody String alterarFornecedor(
-
-			@PathVariable Integer id,
-			@RequestParam	String nome,
-							String endereco,
-							String telefone,
-							String cnpj,
-							String email
-
-			) {
+				@PathVariable Integer id,
+				@RequestParam	Fornecedor fornecedorDetalhes
+				){
 
 
 		if (fornecedorRepo.findById(id) == null) {
@@ -81,12 +66,13 @@ public class FornecedorController {
 		}
 
 		Fornecedor fornecedor = new Fornecedor();
-		fornecedor.setId(id);
-		fornecedor.setNome(nome);
-		fornecedor.setEndereco(endereco);
-		fornecedor.setTelefone(telefone);
-		fornecedor.setCnpj(cnpj);
-		fornecedor.setEmail(email);
+		
+		fornecedor.setNome(fornecedorDetalhes.getNome());
+		fornecedor.setEndereco(fornecedorDetalhes.getEndereco());
+		fornecedor.setTelefone(fornecedorDetalhes.getTelefone());
+		fornecedor.setCnpj(fornecedorDetalhes.getCnpj());
+		fornecedor.setEmail(fornecedorDetalhes.getEmail());
+		
 
 		fornecedorRepo.save(fornecedor);
 		
@@ -94,18 +80,13 @@ public class FornecedorController {
 	}
 
 	@GetMapping(path="/buscar/{id}")
-	public @ResponseBody ResponseEntity<Fornecedor> getById(
-			
-		@PathVariable Integer id) {
+	public @ResponseBody String getFornecedorById(@PathVariable Integer id) {
 			
 		if (fornecedorRepo.findById(id) == null) {
-			return (ResponseEntity<Fornecedor>) ResponseEntity.notFound();
-					
-					//.body("ID " + id +" Não encontrado");
+			return "ID " + id +" Não encontrado";
 		}
-		
-		Fornecedor fornecedor = new Fornecedor();
-		return ResponseEntity.ok().body(fornecedor);
+		Fornecedor fornecedor = fornecedorRepo.findById(id).get();
+		return fornecedor.toString();
 	}
 
 
