@@ -27,15 +27,15 @@ public class FormaPagamentoController {
 
 	@PostMapping(path="/criar")
 	public @ResponseBody String criarFormaPag (
-			@RequestBody FormaPagamento formapagamento
-			){
+			@RequestBody FormaPagamento formapagamento)
+		{
 		
 		formaPagRepo.save(formapagamento);
 		return "Forma Pagamento: Registro Criado\n";
 	}
 
 	@GetMapping(path="/listar")
-	public @ResponseBody Iterable<FormaPagamento> getAllFormaPagamento() {
+	public @ResponseBody Iterable<FormaPagamento> listaFormaPagamento() {
 		return formaPagRepo.findAll();
 	}
 
@@ -54,26 +54,28 @@ public class FormaPagamentoController {
 	@PutMapping(path="/atualizar/{id}")
 	public @ResponseBody String alterarFormaPag(
 			@PathVariable Integer id,
-			@RequestBody	FormaPagamento formapagamento
-			){
+			@RequestBody FormaPagamento formapagamentoDetalhes)
+		{
+		if (formaPagRepo.findById(id) == null) {
+			return "ID " + id +" Não encontrado";
+		}
 
-		FormaPagamento formaPag = formaPagRepo.findById(id).get();
+		FormaPagamento formaPagamento = formaPagRepo.findById(id).get();
 		
-		formaPag.setForma(formapagamento.getForma());
-		formaPag.setDescricao(formapagamento.getDescricao());
-		formaPag.setAtivo(formapagamento.getAtivo());
+		formaPagamento.setForma(formapagamentoDetalhes.getForma());
+		formaPagamento.setDescricao(formapagamentoDetalhes.getDescricao());
+		formaPagamento.setAtivo(formapagamentoDetalhes.getAtivo());
 
-		formaPagRepo.save(formaPag);
+		formaPagRepo.save(formaPagamento);
 		
 		return "Forma Pagamento: Registro " +id+ " Alterado\n";
 	}
 
 	@GetMapping(path="/buscar/{id}")
-	public @ResponseBody FormaPagamento findById(
-			@PathVariable Integer id) {
-			
+	public @ResponseBody FormaPagamento getFormaPagamentoById(
+			@PathVariable Integer id)
+		{
 		return formaPagRepo.findById(id).get();
-	
 	}
 
 	
